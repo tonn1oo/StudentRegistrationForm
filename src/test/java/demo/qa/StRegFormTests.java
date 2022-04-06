@@ -1,10 +1,10 @@
 package demo.qa;
 
 import com.codeborne.selenide.Configuration;
-import jdk.jfr.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class StRegFormTests {
@@ -14,6 +14,8 @@ public class StRegFormTests {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1920x1080";
+
+
     }
 
     @Test
@@ -23,11 +25,16 @@ public class StRegFormTests {
         $("#firstName").setValue("Anton");
         $("#lastName").setValue("Vlasov");
         $("#userEmail").setValue("qwerty@wsdx.ru");
-        $("#userNumber").setValue("+79123456");
-        $(".custom-control-label").click();
+        $("#userNumber").setValue("+7912345623");
+        $("#genterWrapper").$(byText("Male")).click();
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOptionByValue("5");
         $(".react-datepicker__year-select").selectOptionByValue("1912");
+        $(".react-datepicker__day--012").click();
+        $("#subjectsInput").setValue("Computer Science").pressEnter();
+        $("#hobbiesWrapper").$(byText("Sports")).click();
+        $("#uploadPicture").uploadFromClasspath("1111.png");
+        $("#currentAddress").setValue("Georgia");
 
 
 
