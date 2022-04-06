@@ -1,6 +1,7 @@
 package demo.qa;
 
 import com.codeborne.selenide.Configuration;
+import jdk.jfr.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -19,11 +20,22 @@ public class StRegFormTests {
     void fillFormTest(){
         open("/automation-practice-form");
 
-        $("[id=firstName]").setValue("Anton");
-        $("[id=lastName]").setValue("Vlasov");
-        $("[id=userEmail]").setValue("qwerty@gmail.com");
-        $("[id=userNumber]").setValue("+79123456");
-        $("[class=custom-control-label]").click();
+        $("#firstName").setValue("Anton");
+        $("#lastName").setValue("Vlasov");
+        $("#userEmail").setValue("qwerty@wsdx.ru");
+        $("#userNumber").setValue("+79123456");
+        $(".custom-control-label").click();
+        $("#dateOfBirthInput").click();
+        $(".react-datepicker__month-select").selectOptionByValue("5");
+        $(".react-datepicker__year-select").selectOptionByValue("1912");
+
+
+
+
+
+
+
+
 
 
 
