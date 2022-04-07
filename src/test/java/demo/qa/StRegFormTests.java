@@ -51,7 +51,7 @@ public class StRegFormTests {
                 text("Date of Birth 29 April,1987"), text("Subjects Computer Science"), text("Hobbies Sports"),
                 text("Picture 1111.png"), text("Address Georgia"), text("State and City NCR Delhi"));
         /////
-       $("#closeLargeModal").click();
+
 
 
 
