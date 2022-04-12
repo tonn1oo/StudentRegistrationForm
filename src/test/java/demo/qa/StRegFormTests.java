@@ -1,7 +1,7 @@
 package demo.qa;
-
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,6 +10,16 @@ import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
 public class StRegFormTests {
+
+    Faker faker = new Faker();
+
+
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            email = faker.internet().emailAddress(),
+            currentAddress = faker.rickAndMorty().quote();
+
+
 
     @BeforeAll
     static void setUp() {
@@ -22,14 +32,15 @@ public class StRegFormTests {
     @Test
     void fillFormTest(){
         open("/automation-practice-form");
+        $(".practice-form-wrapper").shouldHave(text("Student Registration Form"));
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         Selenide.zoom(0.85);
 
 
-        $("#firstName").setValue("Anton");
-        $("#lastName").setValue("Vlasov");
-        $("#userEmail").setValue("qwerty@wsdx.ru");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
         $("#userNumber").setValue("7912345623");
         $("#genterWrapper").$(byText("Male")).click();
         $("#dateOfBirthInput").click();
@@ -39,7 +50,7 @@ public class StRegFormTests {
         $("#subjectsInput").setValue("Computer Science").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("1111.png");
-        $("#currentAddress").setValue("Georgia");
+        $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#stateCity-wrapper").find(byText("NCR")).click();
         $("#city").click();
