@@ -12,6 +12,23 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class StRegFormTests {
     StRegFormPage stregFormPage = new StRegFormPage();
+    Faker faker = new Faker();
+    String firstName = faker.name().firstName(),
+            lastName = faker.name().lastName(),
+            email = faker.internet().emailAddress(),
+            currentAddress = faker.rickAndMorty().quote(),
+            mobile = faker.phoneNumber().subscriberNumber(10),
+            img = "1111.png",
+            hobbies = "Sports",
+            gender = "Male",
+            subject = "Computer Science",
+            day = "25",
+            month = "July",
+            year = "2008",
+            state = "NCR",
+            city = "Delhi";
+
+
 
     @BeforeAll
     static void setUp() {
@@ -25,31 +42,29 @@ public class StRegFormTests {
     void fillFormTest(){
 
         stregFormPage.openPage()
-                .setFirstName()
-                .setLastName()
-                .setEmail()
-                .setMobile()
-                .setCurrentAddress()
-                .setGender("Male")
-                .setBirthDate("25", "July", "2008" );
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setMobile(mobile)
+                .setCurrentAddress(currentAddress)
+                .setGender(gender)
+                .setBirthDate(day,month, year )
+                .setSubjects(subject)
+                .setHobbies(hobbies)
+                .setPicture(img)
+                .setStateCity(state, city)
+                .setSubmit()
 
-        $("#subjectsInput").setValue("Computer Science").pressEnter();
-        $("#hobbiesWrapper").$(byText("Sports")).click();
-        $("#uploadPicture").uploadFromClasspath("1111.png");
-        $("#state").click();
-        $("#stateCity-wrapper").find(byText("NCR")).click();
-        $("#city").click();
-        $("#stateCity-wrapper").find(byText("Delhi")).click();
-        $("#submit").click();
-        ////
-       /// $(".table-responsive").shouldHave(text(firstName + " " + lastName),
-             //   text(email), text("Gender Male"), text(mobile),
-             //   text("Date of Birth 29 April,1987"), text("Subjects Computer Science"), text("Hobbies Sports"),
-              //  text("Picture 1111.png"), text(currentAddress), text("State and City NCR Delhi"));
-        /////
-
-
-
+                .checkResult("Student Name",(firstName + " " + lastName))
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", mobile)
+                .checkResult("Date of Birth", (day + " " + month + "," + year))
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", img)
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", (state + " " + city));
 
 
 
