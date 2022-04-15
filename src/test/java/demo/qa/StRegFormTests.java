@@ -1,14 +1,9 @@
 package demo.qa;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.github.javafaker.Faker;
 import demo.qa.pages.StRegFormPage;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-
-import static com.codeborne.selenide.Condition.text;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selenide.*;
 
 public class StRegFormTests {
     StRegFormPage stregFormPage = new StRegFormPage();
@@ -29,13 +24,11 @@ public class StRegFormTests {
             city = "Delhi";
 
 
-
     @BeforeAll
     static void setUp() {
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1980x1080";
-
     }
 
     @Test
@@ -54,7 +47,6 @@ public class StRegFormTests {
                 .setPicture(img)
                 .setStateCity(state, city)
                 .setSubmit()
-
                 .checkResult("Student Name",(firstName + " " + lastName))
                 .checkResult("Student Email", email)
                 .checkResult("Gender", gender)
