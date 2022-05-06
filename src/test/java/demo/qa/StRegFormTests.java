@@ -1,4 +1,5 @@
 package demo.qa;
+
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import demo.qa.pages.StRegFormPage;
@@ -32,7 +33,7 @@ public class StRegFormTests {
     }
 
     @Test
-    void fillFormTest(){
+    void fillFormTest() {
 
         stregFormPage.openPage()
                 .setFirstName(firstName)
@@ -41,13 +42,13 @@ public class StRegFormTests {
                 .setMobile(mobile)
                 .setCurrentAddress(currentAddress)
                 .setGender(gender)
-                .setBirthDate(day,month, year )
+                .setBirthDate(day, month, year)
                 .setSubjects(subject)
                 .setHobbies(hobbies)
                 .setPicture(img)
                 .setStateCity(state, city)
                 .setSubmit()
-                .checkResult("Student Name",(firstName + " " + lastName))
+                .checkResult("Student Name", (firstName + " " + lastName))
                 .checkResult("Student Email", email)
                 .checkResult("Gender", gender)
                 .checkResult("Mobile", mobile)
@@ -57,19 +58,6 @@ public class StRegFormTests {
                 .checkResult("Picture", img)
                 .checkResult("Address", currentAddress)
                 .checkResult("State and City", (state + " " + city));
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
     }
