@@ -1,12 +1,14 @@
 package demo.qa;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import demo.qa.pages.StRegFormPage;
 import helpers.Attach;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -31,6 +33,7 @@ public class StRegFormTests {
 
     @BeforeAll
     static void setUp() {
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.holdBrowserOpen = true;
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1980x1080";
@@ -52,6 +55,7 @@ public class StRegFormTests {
     }
 
     @Test
+    @DisplayName("Successful fill registration test")
     void fillFormTest() {
 
         stregFormPage.openPage()

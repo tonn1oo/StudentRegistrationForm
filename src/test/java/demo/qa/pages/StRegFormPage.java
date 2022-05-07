@@ -107,10 +107,8 @@ public class StRegFormPage {
     }
 
     public StRegFormPage checkResult(String key, String value) {
-        step("Verify tests", () -> {
-            $(".table-responsive").$(byText(key)).parent()
-                    .shouldHave(text(value));
-        });
+        $(".table-responsive").$(byText(key)).parent()
+                .shouldHave(text(value));
         return this;
 
     }
