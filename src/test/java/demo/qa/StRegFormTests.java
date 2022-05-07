@@ -8,6 +8,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 public class StRegFormTests {
     StRegFormPage stregFormPage = new StRegFormPage();
@@ -34,14 +35,20 @@ public class StRegFormTests {
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.browserSize = "1980x1080";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
+        /// Video
+        DesiredCapabilities capabilities = new DesiredCapabilities();
+        capabilities.setCapability("enableVNC", true);
+        capabilities.setCapability("enableVideo", true);
+        Configuration.browserCapabilities = capabilities;
 
     }
 
     @AfterEach
     void addAttach() {
-        Attach.screenshotAs("123");
+        Attach.screenshotAs("screen");
         Attach.pageSource();
         Attach.browserConsoleLogs();
+        Attach.addVideo();
     }
 
     @Test
