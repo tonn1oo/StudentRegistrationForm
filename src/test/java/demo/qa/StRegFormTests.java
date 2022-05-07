@@ -3,7 +3,10 @@ package demo.qa;
 import com.codeborne.selenide.Configuration;
 import com.github.javafaker.Faker;
 import demo.qa.pages.StRegFormPage;
+import helpers.Attach;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 public class StRegFormTests {
@@ -32,6 +35,13 @@ public class StRegFormTests {
         Configuration.browserSize = "1980x1080";
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
+    }
+
+    @AfterEach
+    void addAttach() {
+        Attach.screenshotAs("123");
+        Attach.pageSource();
+        Attach.browserConsoleLogs();
     }
 
     @Test

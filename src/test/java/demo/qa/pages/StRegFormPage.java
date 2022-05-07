@@ -28,95 +28,93 @@ public class StRegFormPage {
     }
 
 
+    public StRegFormPage setFirstName(String firstName) {
+        firstNameInput.setValue(firstName);
 
+        return this;
+    }
 
-        public StRegFormPage setFirstName (String firstName){
-            firstNameInput.setValue(firstName);
+    public StRegFormPage setLastName(String lastName) {
+        $("#lastName").setValue(lastName);
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setLastName (String lastName){
-            $("#lastName").setValue(lastName);
+    public StRegFormPage setEmail(String email) {
+        $("#userEmail").setValue(email);
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setEmail (String email){
-            $("#userEmail").setValue(email);
+    public StRegFormPage setCurrentAddress(String currentAddress) {
+        $("#currentAddress").setValue(currentAddress);
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setCurrentAddress (String currentAddress){
-            $("#currentAddress").setValue(currentAddress);
+    public StRegFormPage setMobile(String mobile) {
+        $("#userNumber").setValue(mobile);
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setMobile (String mobile){
-            $("#userNumber").setValue(mobile);
+    public StRegFormPage setGender(String value) {
+        $("#genterWrapper").$(byText(value)).click();
 
-            return this;
-        }
+        return this;
 
-        public StRegFormPage setGender (String value){
-            $("#genterWrapper").$(byText(value)).click();
+    }
 
-            return this;
+    public StRegFormPage setBirthDate(String day, String month, String year) {
+        $("#dateOfBirthInput").click();
+        calendar.setDate(day, month, year);
 
-        }
+        return this;
+    }
 
-        public StRegFormPage setBirthDate (String day, String month, String year){
-            $("#dateOfBirthInput").click();
-            calendar.setDate(day, month, year);
+    public StRegFormPage setSubjects(String value) {
+        $("#subjectsInput").setValue(value).pressEnter();
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setSubjects (String value){
-            $("#subjectsInput").setValue(value).pressEnter();
+    public StRegFormPage setHobbies(String value) {
+        $("#hobbiesWrapper").$(byText(value)).click();
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setHobbies (String value){
-            $("#hobbiesWrapper").$(byText(value)).click();
+    public StRegFormPage setPicture(String value) {
+        $("#uploadPicture").uploadFromClasspath("1111.png");
 
-            return this;
-        }
+        return this;
+    }
 
-        public StRegFormPage setPicture (String value){
-            $("#uploadPicture").uploadFromClasspath("1111.png");
+    public StRegFormPage setStateCity(String state, String city) {
+        $("#state").click();
+        statecity.setState(state);
+        $("#city").click();
+        statecity.setCity(city);
 
-            return this;
-        }
+        return this;
 
-        public StRegFormPage setStateCity (String state, String city){
-            $("#state").click();
-            statecity.setState(state);
-            $("#city").click();
-            statecity.setCity(city);
+    }
 
-            return this;
+    public StRegFormPage setSubmit() {
+        $("#submit").click();
 
-        }
+        return this;
+    }
 
-        public StRegFormPage setSubmit () {
-            $("#submit").click();
-
-            return this;
-        }
-
-        public StRegFormPage checkResult (String key, String value){
-
+    public StRegFormPage checkResult(String key, String value) {
+        step("Verify tests", () -> {
             $(".table-responsive").$(byText(key)).parent()
                     .shouldHave(text(value));
-            return this;
+        });
+        return this;
 
-
-        }
     }
+}
 
 
 
