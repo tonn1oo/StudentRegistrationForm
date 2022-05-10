@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import static com.codeborne.selenide.Selenide.closeWebDriver;
+import static io.qameta.allure.Allure.step;
 
 public class StRegFormTests {
     StRegFormPage stregFormPage = new StRegFormPage();
@@ -61,7 +62,7 @@ public class StRegFormTests {
     @Test
     @DisplayName("Successful fill registration test")
     void fillFormTest() {
-
+        step("Fill registration form", () -> {
         stregFormPage.openPage()
                 .setFirstName(firstName)
                 .setLastName(lastName)
@@ -87,5 +88,6 @@ public class StRegFormTests {
                 .checkResult("State and City", (state + " " + city));
 
 
+    });
     }
 }
