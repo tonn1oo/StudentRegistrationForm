@@ -2,7 +2,6 @@ package helpers;
 
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
-import org.jetbrains.annotations.NotNull;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -22,7 +21,7 @@ public class Attach {
     }
 
     @Attachment(value = "Page source", type = "text/plain")
-    public static byte @NotNull [] pageSource() {
+    public static byte [] pageSource() {
         return getWebDriver().getPageSource().getBytes(StandardCharsets.UTF_8);
     }
 

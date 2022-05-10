@@ -12,6 +12,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+import static com.codeborne.selenide.Selenide.closeWebDriver;
+
 public class StRegFormTests {
     StRegFormPage stregFormPage = new StRegFormPage();
     Faker faker = new Faker();
@@ -52,6 +54,8 @@ public class StRegFormTests {
         Attach.pageSource();
         Attach.browserConsoleLogs();
         Attach.addVideo();
+        closeWebDriver();
+
     }
 
     @Test
