@@ -4,10 +4,8 @@ import com.github.javafaker.Faker;
 import demo.qa.pages.StRegFormPage;
 import org.junit.jupiter.api.Test;
 
-import static io.qameta.allure.Allure.step;
 
-
-public class StRegFormTests extends TestBase{
+public class StRegFormTests extends TestBase {
     StRegFormPage stregFormPage = new StRegFormPage();
     Faker faker = new Faker();
     String firstName = faker.name().firstName(),
@@ -28,32 +26,30 @@ public class StRegFormTests extends TestBase{
 
     @Test
     void fillFormTest() {
-        step("Successful fill registration test", () -> {
-            stregFormPage.openPage()
-                    .setFirstName(firstName)
-                    .setLastName(lastName)
-                    .setEmail(email)
-                    .setMobile(mobile)
-                    .setCurrentAddress(currentAddress)
-                    .setGender(gender)
-                    .setBirthDate(day, month, year)
-                    .setSubjects(subject)
-                    .setHobbies(hobbies)
-                    .setPicture(img)
-                    .setStateCity(state, city)
-                    .setSubmit()
-                    .checkResult("Student Name", (firstName + " " + lastName))
-                    .checkResult("Student Email", email)
-                    .checkResult("Gender", gender)
-                    .checkResult("Mobile", mobile)
-                    .checkResult("Date of Birth", (day + " " + month + "," + year))
-                    .checkResult("Subjects", subject)
-                    .checkResult("Hobbies", hobbies)
-                    .checkResult("Picture", img)
-                    .checkResult("Address", currentAddress)
-                    .checkResult("State and City", (state + " " + city));
+        stregFormPage.openPage()
+                .setFirstName(firstName)
+                .setLastName(lastName)
+                .setEmail(email)
+                .setMobile(mobile)
+                .setCurrentAddress(currentAddress)
+                .setGender(gender)
+                .setBirthDate(day, month, year)
+                .setSubjects(subject)
+                .setHobbies(hobbies)
+                .setPicture(img)
+                .setStateCity(state, city)
+                .setSubmit()
+                .checkResult("Student Name", (firstName + " " + lastName))
+                .checkResult("Student Email", email)
+                .checkResult("Gender", gender)
+                .checkResult("Mobile", mobile)
+                .checkResult("Date of Birth", (day + " " + month + "," + year))
+                .checkResult("Subjects", subject)
+                .checkResult("Hobbies", hobbies)
+                .checkResult("Picture", img)
+                .checkResult("Address", currentAddress)
+                .checkResult("State and City", (state + " " + city));
 
 
-        });
     }
 }
