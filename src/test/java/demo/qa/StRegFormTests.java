@@ -1,21 +1,13 @@
 package demo.qa;
 
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.logevents.SelenideLogger;
 import com.github.javafaker.Faker;
 import demo.qa.pages.StRegFormPage;
-import helpers.Attach;
-import io.qameta.allure.selenide.AllureSelenide;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.remote.DesiredCapabilities;
 
-import static com.codeborne.selenide.Selenide.closeWebDriver;
 import static io.qameta.allure.Allure.step;
 
-public class StRegFormTests {
+
+public class StRegFormTests extends TestBase{
     StRegFormPage stregFormPage = new StRegFormPage();
     Faker faker = new Faker();
     String firstName = faker.name().firstName(),
@@ -34,60 +26,34 @@ public class StRegFormTests {
             city = "Delhi";
 
 
-    @BeforeAll
-    static void setUp() {
-        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
-        Configuration.holdBrowserOpen = true;
-        Configuration.baseUrl = "https://demoqa.com";
-        Configuration.browserSize = "1980x1080";
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
-        /// Video
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
-
-    }
-
-    @AfterEach
-    void addAttach() {
-        Attach.screenshotAs("screen");
-        Attach.pageSource();
-        Attach.browserConsoleLogs();
-        Attach.addVideo();
-        closeWebDriver();
-
-    }
-
     @Test
-    @DisplayName("Successful fill registration test")
     void fillFormTest() {
-        step("Fill registration form", () -> {
-        stregFormPage.openPage()
-                .setFirstName(firstName)
-                .setLastName(lastName)
-                .setEmail(email)
-                .setMobile(mobile)
-                .setCurrentAddress(currentAddress)
-                .setGender(gender)
-                .setBirthDate(day, month, year)
-                .setSubjects(subject)
-                .setHobbies(hobbies)
-                .setPicture(img)
-                .setStateCity(state, city)
-                .setSubmit()
-                .checkResult("Student Name", (firstName + " " + lastName))
-                .checkResult("Student Email", email)
-                .checkResult("Gender", gender)
-                .checkResult("Mobile", mobile)
-                .checkResult("Date of Birth", (day + " " + month + "," + year))
-                .checkResult("Subjects", subject)
-                .checkResult("Hobbies", hobbies)
-                .checkResult("Picture", img)
-                .checkResult("Address", currentAddress)
-                .checkResult("State and City", (state + " " + city));
+        step("Successful fill registration test", () -> {
+            stregFormPage.openPage()
+                    .setFirstName(firstName)
+                    .setLastName(lastName)
+                    .setEmail(email)
+                    .setMobile(mobile)
+                    .setCurrentAddress(currentAddress)
+                    .setGender(gender)
+                    .setBirthDate(day, month, year)
+                    .setSubjects(subject)
+                    .setHobbies(hobbies)
+                    .setPicture(img)
+                    .setStateCity(state, city)
+                    .setSubmit()
+                    .checkResult("Student Name", (firstName + " " + lastName))
+                    .checkResult("Student Email", email)
+                    .checkResult("Gender", gender)
+                    .checkResult("Mobile", mobile)
+                    .checkResult("Date of Birth", (day + " " + month + "," + year))
+                    .checkResult("Subjects", subject)
+                    .checkResult("Hobbies", hobbies)
+                    .checkResult("Picture", img)
+                    .checkResult("Address", currentAddress)
+                    .checkResult("State and City", (state + " " + city));
 
 
-    });
+        });
     }
 }
