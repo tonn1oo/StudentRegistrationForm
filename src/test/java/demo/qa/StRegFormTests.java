@@ -6,6 +6,7 @@ import demo.qa.pages.StRegFormPage;
 import helpers.Attach;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
@@ -28,7 +29,6 @@ public class StRegFormTests {
         Configuration.browserCapabilities = capabilities;
 
     }
-
     @AfterEach
     void addAttach() {
         Attach.screenshotAs("screen");
@@ -58,6 +58,7 @@ public class StRegFormTests {
 
 
     @Test
+    @DisplayName("Successful fill registration test")
     void fillFormTest() {
         stregFormPage.openPage()
                 .setFirstName(firstName)
