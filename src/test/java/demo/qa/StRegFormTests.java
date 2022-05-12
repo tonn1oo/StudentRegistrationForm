@@ -19,10 +19,11 @@ import static com.codeborne.selenide.Selenide.closeWebDriver;
 
 public class StRegFormTests {
 
-    static CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
+
 
     @BeforeAll
     static void setUp() {
+        CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         Configuration.baseUrl = System.getProperty("base_url");
         Configuration.browserSize = System.getProperty("browser_size");
