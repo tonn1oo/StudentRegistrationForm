@@ -20,7 +20,7 @@ public class TestBase {
         String login = config.login();
         String password = config.password();
         String selenoidUrl = System.getProperty("selenoid", "selenoid.autotests.cloud/wd/hub");
-        String propertyBrowserSize = System.getProperty("propertyBrowserSize", "1980x1024");
+        String propertyBrowserSize = System.getProperty("propertyBrowserSize", "1980x1080");
         String startUrl = System.getProperty("startUrl", "https://demoqa.com");
 
 
