@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 public class StRegFormTests extends TestBase {
 
-
     StRegFormPage stregFormPage = new StRegFormPage();
     Faker faker = new Faker();
     String firstName = faker.name().firstName(),
