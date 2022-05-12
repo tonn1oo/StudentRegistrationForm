@@ -17,19 +17,19 @@ public class TestBase {
     static void setUp() {
         SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
         CredentialsConfig config = ConfigFactory.create(CredentialsConfig.class);
-        String login = config.loginSelenoid();
-        String password = config.passwordSelenoid();
-
+        String login = config.login();
+        String password = config.password();
         String selenoidUrl = System.getProperty("selenoid", "selenoid.autotests.cloud/wd/hub");
-        String propertyBrowserSize = System.getProperty("propertyBrowserSize","1980x1024");
+        String propertyBrowserSize = System.getProperty("propertyBrowserSize", "1980x1024");
         String startUrl = System.getProperty("startUrl", "https://demoqa.com");
 
 
         Configuration.baseUrl = startUrl;
         Configuration.browserSize = propertyBrowserSize;
-        Configuration.remote = "https://"+ login + ":" + password +"@" + selenoidUrl;
+        Configuration.remote = "https://" + login + ":" + password + "@" + selenoidUrl;
 
     }
+
     @AfterEach
     void addAttach() {
         Attach.screenshotAs("screen");
